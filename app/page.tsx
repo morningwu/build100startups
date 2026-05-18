@@ -7,6 +7,7 @@ import { useLang } from '@/context/LanguageContext'
 import { t, tr } from '@/lib/i18n'
 import { projects, getTotalMRR, getTotalRevenue, getShippedCount } from '@/lib/projects'
 import type { Project } from '@/lib/projects'
+import { withUTM } from '@/lib/utils'
 
 type Filter = 'All' | 'Live' | 'Building' | 'Idea'
 
@@ -64,7 +65,7 @@ export default function Home() {
             </p>
             <div className="flex items-center justify-center md:justify-start gap-2 flex-wrap">
               <a
-                href="https://x.com/morningwuu"
+                href={withUTM('https://x.com/morningwuu')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 bg-black text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-gray-800 transition-colors"
@@ -75,7 +76,7 @@ export default function Home() {
                 {tr(t.hero.connectX, lang)}
               </a>
               <a
-                href="https://www.linkedin.com/in/morningwu/"
+                href={withUTM('https://www.linkedin.com/in/morningwu/')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-blue-700 transition-colors"
@@ -139,8 +140,20 @@ export default function Home() {
           {filtered.map((project) => (
             <div
               key={project.slug}
-              className={`border-2 rounded-xl p-5 flex flex-col hover:shadow-md transition-all bg-white ${cardBorderColors[project.status]}`}
+              className={`border-2 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-all bg-white ${cardBorderColors[project.status]}`}
             >
+              {/* Thumbnail */}
+              {project.image ? (
+                <Image src={project.image} alt={project.name} width={1200} height={630} className="w-full aspect-[1200/630] object-cover" />
+              ) : (
+                <div className="w-full aspect-[1200/630] bg-gray-100 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-gray-300 select-none">
+                    {project.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
+                  </span>
+                </div>
+              )}
+
+              <div className="p-5 flex flex-col flex-1">
               <div className="flex items-start justify-between mb-3">
                 <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{project.category}</span>
                 <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${statusColors[project.status]}`}>
@@ -163,13 +176,14 @@ export default function Home() {
                   {tr(t.projects.viewDetails, lang)}
                 </Link>
                 <a
-                  href={project.projectUrl}
+                  href={withUTM(project.projectUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 text-center text-sm font-medium bg-gray-900 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors"
                 >
                   {tr(t.projects.visitProject, lang)}
                 </a>
+              </div>
               </div>
             </div>
           ))}
@@ -191,8 +205,8 @@ export default function Home() {
         <div className="max-w-5xl mx-auto flex items-center justify-between text-sm text-gray-400">
           <span>{tr(t.footer.text, lang)}</span>
           <div className="flex gap-4">
-            <a href="https://x.com/morningwuu" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">X</a>
-            <a href="https://www.linkedin.com/in/morningwu/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">LinkedIn</a>
+            <a href={withUTM('https://x.com/morningwuu')} target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">X</a>
+            <a href={withUTM('https://www.linkedin.com/in/morningwu/')} target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>
