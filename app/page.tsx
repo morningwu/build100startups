@@ -16,6 +16,12 @@ const statusColors: Record<string, string> = {
   Idea: 'bg-gray-100 text-gray-500',
 }
 
+const cardBorderColors: Record<string, string> = {
+  Live: 'border-green-300 hover:border-green-400',
+  Building: 'border-yellow-300 hover:border-yellow-400',
+  Idea: 'border-gray-200 hover:border-gray-300',
+}
+
 export default function Home() {
   const { lang } = useLang()
   const [filter, setFilter] = useState<Filter>('All')
@@ -35,12 +41,12 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-5xl mx-auto px-6 pt-16 pb-10 text-center">
         {/* Big headline */}
-        <p className="text-sm font-semibold text-indigo-500 uppercase tracking-widest mb-3">
-          {tr(t.hero.oneliner, lang)}
-        </p>
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-10">
+        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
           {tr(t.hero.headline, lang)}
         </h1>
+        <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
+          {tr(t.hero.subheadline, lang)}
+        </p>
 
         {/* Profile card */}
         <div className="flex flex-col md:flex-row items-center md:items-start gap-6 text-left bg-gray-50 border border-gray-100 rounded-2xl p-6 max-w-2xl mx-auto">
@@ -133,7 +139,7 @@ export default function Home() {
           {filtered.map((project) => (
             <div
               key={project.slug}
-              className="border border-gray-200 rounded-xl p-5 flex flex-col hover:shadow-md transition-shadow bg-white"
+              className={`border-2 rounded-xl p-5 flex flex-col hover:shadow-md transition-all bg-white ${cardBorderColors[project.status]}`}
             >
               <div className="flex items-start justify-between mb-3">
                 <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{project.category}</span>

@@ -7,7 +7,10 @@ export const t = {
   },
   hero: {
     headline: { en: 'Building 100 Startups', zh: '挑戰打造 100 個創業專案' },
-    oneliner: { en: 'Shipping 100 online products in public — one build at a time.', zh: '公開上線 100 個網路產品——一次一個專案。' },
+    subheadline: {
+      en: 'AI is everywhere — and instead of just talking about it, I\'m building with it. I\'m challenging myself to ship 100 startups using AI, and documenting every win, every failure, and everything in between. No gatekeeping, just raw and honest building in public.',
+      zh: 'AI 無所不在——與其只是談論它，不如直接動手做。我挑戰自己用 AI 打造 100 個創業產品，並記錄每一次成功、每一次失敗，以及所有過程中的起伏。沒有門檻，只有真實、誠實地公開建造。',
+    },
     greeting: { en: 'Hey, I\'m Morning Wu 👋', zh: '嗨，我是 Morning Wu 👋' },
     bio: {
       en: 'Not a developer — just a curious guy trying to survive the AI era. AI is changing everything and I want to see how far a non-coder can go. So I set myself a challenge: build and ship 100 online products — SaaS tools, AI agents, stores, directories — and document every step publicly. The goal? Learn fast, ship faster, and make enough before AI replaces me 😅',
@@ -17,9 +20,9 @@ export const t = {
     connectLinkedIn: { en: 'Connect on LinkedIn', zh: '在 LinkedIn 聯繫' },
   },
   stats: {
-    shipped: { en: 'Products Built', zh: '已建造產品' },
-    mrr: { en: 'Current MRR', zh: '當前每月經常性收入' },
-    revenue: { en: 'Total Revenue', zh: '總收入' },
+    shipped: { en: '🚀 Products Built', zh: '🚀 已建造產品' },
+    mrr: { en: '💰 Current MRR', zh: '💰 當前月收入' },
+    revenue: { en: '💵 Total Revenue', zh: '💵 總收入' },
   },
   projects: {
     title: { en: 'All Products', zh: '所有產品' },
