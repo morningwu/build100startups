@@ -6,6 +6,8 @@ export const t = {
     about: { en: 'About', zh: '關於' },
   },
   hero: {
+    headline: { en: 'Building 100 Startups', zh: '挑戰打造 100 個創業專案' },
+    oneliner: { en: 'Shipping 100 online products in public — one build at a time.', zh: '公開上線 100 個網路產品——一次一個專案。' },
     greeting: { en: 'Hey, I\'m Morning Wu 👋', zh: '嗨，我是 Morning Wu 👋' },
     bio: {
       en: 'Not a developer — just a curious guy trying to survive the AI era. AI is changing everything and I want to see how far a non-coder can go. So I set myself a challenge: build and ship 100 online products — SaaS tools, AI agents, stores, directories — and document every step publicly. The goal? Learn fast, ship faster, and make enough before AI replaces me 😅',
@@ -15,17 +17,21 @@ export const t = {
     connectLinkedIn: { en: 'Connect on LinkedIn', zh: '在 LinkedIn 聯繫' },
   },
   stats: {
-    shipped: { en: 'Projects Shipped', zh: '已上線專案' },
+    shipped: { en: 'Products Built', zh: '已建造產品' },
     mrr: { en: 'Current MRR', zh: '當前每月經常性收入' },
     revenue: { en: 'Total Revenue', zh: '總收入' },
   },
   projects: {
-    title: { en: 'All Builds', zh: '所有專案' },
+    title: { en: 'All Products', zh: '所有產品' },
     subtitle: { en: 'Every product I\'ve built, documented in public.', zh: '我建造的每個產品，公開記錄。' },
     viewDetails: { en: 'View Details', zh: '查看詳情' },
     visitProject: { en: 'Visit Project', zh: '前往專案' },
     mrr: { en: 'MRR', zh: '每月收入' },
     status: { en: 'Status', zh: '狀態' },
+    filterAll: { en: 'All', zh: '全部' },
+    filterLive: { en: 'Live', zh: '已上線' },
+    filterBuilding: { en: 'Building', zh: '建造中' },
+    filterIdea: { en: 'Idea', zh: '構想中' },
   },
   detail: {
     backToAll: { en: '← All Builds', zh: '← 所有專案' },

@@ -192,5 +192,5 @@ export function getTotalRevenue(): number {
 }
 
 export function getShippedCount(): number {
-  return projects.filter((p) => p.status === 'Live').length
+  return projects.length
 }
