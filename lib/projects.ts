@@ -3,6 +3,7 @@ export type Project = {
   name: string
   category: string
   status: 'Live' | 'Building' | 'Idea'
+  image: string | null
   shortDescription: { en: string; zh: string }
   longDescription: { en: string; zh: string }
   projectUrl: string
@@ -17,18 +18,19 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'buildwithvibecode',
-    name: 'BuildWithVibe Code',
+    image: '/photos/buildwithvibecode.png',
+    name: 'BuiltWith VibeCode',
     category: 'Directory Site',
     status: 'Live',
     shortDescription: {
-      en: 'A curated directory of the best vibe coding tools, resources and communities for builders.',
-      zh: '精選的最佳 Vibe Coding 工具、資源與社群目錄，專為創作者打造。',
+      en: 'A directory of projects built using AI vibe coding tools like v0, Gemini, Claude Code and more.',
+      zh: '收錄使用 AI Vibe Coding 工具（如 v0、Gemini、Claude Code 等）打造的專案目錄。',
     },
     longDescription: {
-      en: 'BuildWithVibe Code is a hand-curated directory that helps non-developers and indie hackers discover the best AI-powered coding tools, no-code platforms, communities, and learning resources. The goal is to lower the barrier to building — if you have an idea, this is where you find the tools to make it real.',
-      zh: 'BuildWithVibe Code 是一個精心策劃的目錄，幫助非開發者和獨立駭客發現最好的 AI 程式工具、無程式碼平台、社群和學習資源。目標是降低建造的門檻——如果你有想法，這裡就是你找到工具實現它的地方。',
+      en: 'BuiltWith VibeCode is a curated directory showcasing projects built using AI-powered vibe coding tools — v0, Gemini, Claude Code, Cursor, and more. It\'s a place for builders to discover what\'s possible with these tools and get inspired by real projects shipped by real people. If you\'ve built something with a vibe coding tool, this is where it belongs.',
+      zh: 'BuiltWith VibeCode 是一個精選目錄，展示使用 AI Vibe Coding 工具打造的專案——v0、Gemini、Claude Code、Cursor 等。這是一個讓創作者發現這些工具可能性、並從真實專案中獲得靈感的地方。如果你用 Vibe Coding 工具做了些東西，這裡就是它的歸屬。',
     },
-    projectUrl: 'https://buildwithvibecode.com',
+    projectUrl: 'https://www.builtwithvibecode.com/',
     mrr: 0,
     monthlyVisitors: 320,
     totalRevenue: 0,
@@ -44,18 +46,19 @@ export const projects: Project[] = [
   },
   {
     slug: 'muse-digital-print',
-    name: 'Muse Digital Print',
+    image: '/photos/museprintsdigital-v2.png',
+    name: 'Muse Prints Digital',
     category: 'Etsy Store',
     status: 'Live',
     shortDescription: {
-      en: 'An Etsy store selling AI-generated digital art prints — instant download, no shipping needed.',
-      zh: '在 Etsy 銷售 AI 生成數位藝術印刷品——即時下載，無需運送。',
+      en: 'An Etsy store selling Digital Fine Art prints — instant download, no shipping needed.',
+      zh: '在 Etsy 銷售數位精緻藝術印刷品——即時下載，無需運送。',
     },
     longDescription: {
-      en: 'Muse Digital Print is an Etsy shop offering high-quality, AI-generated art prints available for instant digital download. Customers purchase, download, and print at home or at a local print shop. The store focuses on minimalist aesthetic designs — wall art, motivational prints, and abstract pieces.',
-      zh: 'Muse Digital Print 是一家 Etsy 商店，提供高品質、AI 生成的藝術印刷品，可即時數位下載。顧客購買後下載，在家或在當地印刷店自行列印。商店專注於簡約美學設計——牆面藝術、勵志印刷品和抽象作品。',
+      en: 'Muse Prints Digital is an Etsy shop offering high-quality Digital Fine Art prints available for instant digital download. Customers purchase, download, and print at home or at a local print shop. The store focuses on fine art aesthetic designs — wall art, artistic prints, and abstract pieces.',
+      zh: 'Muse Prints Digital 是一家 Etsy 商店，提供高品質數位精緻藝術印刷品，可即時數位下載。顧客購買後下載，在家或在當地印刷店自行列印。商店專注於精緻藝術美學設計——牆面藝術、藝術印刷品和抽象作品。',
     },
-    projectUrl: 'https://etsy.com/shop/MuseDigitalPrint',
+    projectUrl: 'https://www.etsy.com/shop/MusePrintsDigital',
     mrr: 85,
     monthlyVisitors: 1200,
     totalRevenue: 340,
@@ -70,34 +73,64 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'aws-lab',
-    name: 'AWS Lab',
-    category: 'AI Learning App',
+    slug: 'cs-engine',
+    image: '/photos/csengine-v2.png',
+    name: 'CS Engine',
+    category: 'AI Agent',
     status: 'Building',
     shortDescription: {
-      en: 'An interactive AI learning app that helps beginners understand AWS through hands-on labs and AI-guided explanations.',
-      zh: '互動式 AI 學習應用，透過實作練習和 AI 引導說明，幫助初學者了解 AWS。',
+      en: 'An AI-powered Customer Intelligence Engine built for an ecommerce brand to automate CS workflows and turn support data into growth insights.',
+      zh: '為電商品牌打造的 AI 客服智能引擎，自動化客服流程並將支援數據轉化為成長洞察。',
     },
     longDescription: {
-      en: 'AWS Lab makes cloud computing accessible to non-engineers by combining bite-sized lessons with interactive sandbox environments. Powered by AI, it explains complex AWS concepts in plain English, provides guided labs, and quizzes users as they progress. The aim is to help people get AWS certified without needing a CS degree.',
-      zh: 'AWS Lab 透過結合碎片化課程和互動沙盒環境，讓非工程師也能輕鬆接觸雲端運算。由 AI 驅動，以平易近人的語言解釋複雜的 AWS 概念，提供引導式實驗，並在學習過程中測驗用戶。目標是幫助人們在不需要電腦科學學位的情況下取得 AWS 認證。',
+      en: 'CS Engine is an internal AI system built for an ecommerce brand to fully automate their customer service workflow. It handles inbound support queries end-to-end — understanding context, resolving common issues, and escalating only when truly needed. But the real value goes beyond automation: every customer question is captured and analysed as marketing intelligence. Frequently asked questions reveal product confusion, unmet needs, and hidden demand — turning the support inbox into a growth discovery engine. This is a private, internal tool and not available to the public.',
+      zh: 'CS Engine 是為一個電商品牌打造的內部 AI 系統，旨在全面自動化其客服工作流程。它端對端處理入站支援查詢——理解上下文、解決常見問題，並僅在真正需要時升級處理。但真正的價值超越了自動化：每個客戶問題都被捕捉並分析為行銷情報。常見問題揭示產品混淆、未滿足的需求和隱藏的需求——將支援收件匣轉化為成長發現引擎。這是一個私有的內部工具，不對外公開。',
     },
-    projectUrl: 'https://awslab.io',
+    projectUrl: '#',
     mrr: 0,
     monthlyVisitors: 0,
     totalRevenue: 0,
-    tools: ['Next.js', 'OpenAI API', 'Supabase', 'Vercel', 'Tailwind CSS'],
+    tools: ['Claude API', 'n8n', 'Supabase', 'Shopify API', 'Make'],
     monetization: {
-      en: 'Freemium SaaS model — free for basic lessons, $9/month for full lab access and AI tutor features.',
-      zh: 'Freemium SaaS 模式——基礎課程免費，完整實驗室存取和 AI 導師功能每月 9 美元。',
+      en: 'Built as a custom internal solution for a single ecommerce client. Potential to productise into a multi-tenant SaaS for Shopify brands in the future.',
+      zh: '作為單一電商客戶的客製化內部解決方案打造。未來有潛力產品化為面向 Shopify 品牌的多租戶 SaaS。',
     },
     marketingPlan: {
-      en: 'Targeting AWS exam prep communities on Reddit and Discord. Plan to publish SEO content around popular AWS certification queries.',
-      zh: '鎖定 Reddit 和 Discord 上的 AWS 考試準備社群。計畫針對熱門 AWS 認證查詢發布 SEO 內容。',
+      en: 'Internal use only — no public launch planned at this stage. If productised, the go-to-market would target Shopify merchants via communities, DTC forums, and direct outreach.',
+      zh: '僅供內部使用——目前階段無公開上線計畫。若產品化，上市策略將透過社群、DTC 論壇和直接外展鎖定 Shopify 商家。',
+    },
+  },
+  {
+    slug: 'snap2color',
+    image: '/photos/snap2color.png',
+    name: 'Snap2Color',
+    category: 'AI App',
+    status: 'Live',
+    shortDescription: {
+      en: 'Turn any image into a printable coloring page instantly using AI.',
+      zh: '使用 AI 即時將任何圖片轉換為可列印的著色頁。',
+    },
+    longDescription: {
+      en: 'Snap2Color is a simple but delightful AI-powered app that transforms any photo or image into a clean coloring page — ready to print and color. Upload a photo, pick a style, and get a printable coloring sheet in seconds. Great for kids, educators, artists, and anyone who loves coloring. No design skills needed.',
+      zh: 'Snap2Color 是一款簡單而令人愉快的 AI 應用，能將任何照片或圖片轉換為清晰的著色頁——隨時可列印上色。上傳照片，選擇風格，幾秒內即可獲得可列印的著色頁。非常適合孩子、教育工作者、藝術家以及所有喜愛著色的人。無需設計技能。',
+    },
+    projectUrl: 'https://snap2color.vercel.app/',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Next.js', 'Vercel', 'Tailwind CSS', 'Claude API'],
+    monetization: {
+      en: 'Freemium model — free for basic conversions, paid plan for higher resolution exports and batch processing.',
+      zh: 'Freemium 模式——基本轉換免費，付費方案提供更高解析度匯出和批次處理功能。',
+    },
+    marketingPlan: {
+      en: 'Targeting parents, teachers and coloring enthusiasts on Pinterest and TikTok. SEO content around "photo to coloring page" keywords.',
+      zh: '鎖定 Pinterest 和 TikTok 上的家長、教師和著色愛好者。針對「照片轉著色頁」關鍵字進行 SEO 內容建設。',
     },
   },
   {
     slug: 'daily-ai-digest',
+    image: null,
     name: 'Daily AI Digest',
     category: 'Newsletter',
     status: 'Building',
@@ -125,6 +158,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'pixelstore',
+    image: null,
     name: 'PixelStore',
     category: 'Digital Marketplace',
     status: 'Idea',
@@ -152,6 +186,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'career-ai',
+    image: null,
     name: 'CareerAI',
     category: 'AI Agent',
     status: 'Idea',
