@@ -1,95 +1,137 @@
-const builds = [
-  {
-    number: 1,
-    name: "Build 100 Startups",
-    type: "Directory Site",
-    status: "Live",
-    description: "The site you're on right now. Documenting the journey of building 100 online products.",
-  },
-];
+'use client'
+
+import Image from 'next/image'
+import Link from 'next/link'
+import { useLang } from '@/context/LanguageContext'
+import { t, tr } from '@/lib/i18n'
+import { projects, getTotalMRR, getTotalRevenue, getShippedCount } from '@/lib/projects'
+
+const statusColors: Record<string, string> = {
+  Live: 'bg-green-100 text-green-700',
+  Building: 'bg-yellow-100 text-yellow-700',
+  Idea: 'bg-gray-100 text-gray-500',
+}
 
 export default function Home() {
+  const { lang } = useLang()
+
   return (
-    <main className="min-h-screen bg-gray-950 text-white">
-      {/* Header */}
-      <header className="border-b border-gray-800 px-6 py-4">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <span className="text-lg font-bold tracking-tight">Build 100 Startups</span>
-          <nav className="flex gap-6 text-sm text-gray-400">
-            <a href="#builds" className="hover:text-white transition-colors">Builds</a>
-            <a href="#about" className="hover:text-white transition-colors">About</a>
-          </nav>
-        </div>
-      </header>
+    <main className="min-h-screen bg-white text-gray-900">
 
       {/* Hero */}
-      <section className="max-w-5xl mx-auto px-6 py-20 text-center">
-        <p className="text-sm font-medium text-indigo-400 uppercase tracking-widest mb-4">The Journey</p>
-        <h1 className="text-5xl font-bold tracking-tight mb-6">
-          Building 100 Online Products
-          <br />
-          <span className="text-gray-400">In Public</span>
-        </h1>
-        <p className="text-gray-400 text-lg max-w-xl mx-auto mb-10">
-          SaaS tools, AI agents, directories, stores — one build at a time.
-          Every product documented from idea to launch.
-        </p>
-        <div className="flex items-center justify-center gap-4">
-          <a href="#builds" className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-            See All Builds
-          </a>
-          <a href="#about" className="border border-gray-700 hover:border-gray-500 text-gray-300 px-6 py-3 rounded-lg font-medium transition-colors">
-            About This Project
-          </a>
+      <section className="max-w-5xl mx-auto px-6 py-16">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+          <div className="shrink-0">
+            <Image
+              src="/photos/profile-pic.jpg"
+              alt="Morning Wu"
+              width={120}
+              height={120}
+              className="rounded-full object-cover ring-4 ring-gray-100"
+            />
+          </div>
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-3xl font-bold text-gray-900 mb-3">
+              {tr(t.hero.greeting, lang)}
+            </h1>
+            <p className="text-gray-600 leading-relaxed max-w-2xl mb-5">
+              {tr(t.hero.bio, lang)}
+            </p>
+            <div className="flex items-center justify-center md:justify-start gap-3">
+              <a
+                href="https://x.com/morningwuu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
+                {tr(t.hero.connectX, lang)}
+              </a>
+              <a
+                href="https://www.linkedin.com/in/morningwu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                {tr(t.hero.connectLinkedIn, lang)}
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Stats */}
-      <section className="border-y border-gray-800 py-10">
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-3 gap-8 text-center">
+      <section className="border-y border-gray-100 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 py-10 grid grid-cols-3 gap-6 text-center">
           <div>
-            <p className="text-4xl font-bold">1</p>
-            <p className="text-gray-400 text-sm mt-1">Builds Launched</p>
+            <p className="text-4xl font-bold text-gray-900">{getShippedCount()}</p>
+            <p className="text-gray-500 text-sm mt-1">{tr(t.stats.shipped, lang)}</p>
           </div>
           <div>
-            <p className="text-4xl font-bold">99</p>
-            <p className="text-gray-400 text-sm mt-1">To Go</p>
+            <p className="text-4xl font-bold text-gray-900">${getTotalMRR()}</p>
+            <p className="text-gray-500 text-sm mt-1">{tr(t.stats.mrr, lang)}</p>
           </div>
           <div>
-            <p className="text-4xl font-bold">1%</p>
-            <p className="text-gray-400 text-sm mt-1">Complete</p>
+            <p className="text-4xl font-bold text-gray-900">${getTotalRevenue()}</p>
+            <p className="text-gray-500 text-sm mt-1">{tr(t.stats.revenue, lang)}</p>
           </div>
         </div>
       </section>
 
-      {/* Builds */}
-      <section id="builds" className="max-w-5xl mx-auto px-6 py-20">
-        <h2 className="text-2xl font-bold mb-8">All Builds</h2>
-        <div className="grid gap-4">
-          {builds.map((build) => (
-            <div key={build.number} className="border border-gray-800 rounded-xl p-6 hover:border-gray-600 transition-colors bg-gray-900">
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-4">
-                  <span className="text-3xl font-bold text-gray-700">#{build.number.toString().padStart(2, "0")}</span>
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-semibold text-lg">{build.name}</h3>
-                      <span className="text-xs bg-indigo-900 text-indigo-300 px-2 py-0.5 rounded-full">{build.type}</span>
-                    </div>
-                    <p className="text-gray-400 text-sm">{build.description}</p>
-                  </div>
-                </div>
-                <span className="text-xs bg-green-900 text-green-400 px-2 py-1 rounded-full whitespace-nowrap">{build.status}</span>
-              </div>
-            </div>
-          ))}
+      {/* Projects Grid */}
+      <section id="projects" className="max-w-5xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">{tr(t.projects.title, lang)}</h2>
+        <p className="text-gray-500 mb-10">{tr(t.projects.subtitle, lang)}</p>
 
-          {/* Placeholder cards for upcoming builds */}
-          {Array.from({ length: 3 }).map((_, i) => (
-            <div key={i} className="border border-dashed border-gray-800 rounded-xl p-6 opacity-40">
-              <div className="flex items-center gap-4">
-                <span className="text-3xl font-bold text-gray-700">#{(i + 2).toString().padStart(2, "0")}</span>
-                <div className="h-4 bg-gray-800 rounded w-48" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div
+              key={project.slug}
+              className="border border-gray-200 rounded-xl p-5 flex flex-col hover:shadow-md transition-shadow bg-white"
+            >
+              {/* Top */}
+              <div className="flex items-start justify-between mb-3">
+                <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{project.category}</span>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${statusColors[project.status]}`}>
+                  {tr(t.status[project.status], lang)}
+                </span>
+              </div>
+
+              {/* Name */}
+              <h3 className="font-semibold text-gray-900 text-lg mb-2">{project.name}</h3>
+
+              {/* Description */}
+              <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">
+                {tr(project.shortDescription, lang)}
+              </p>
+
+              {/* MRR */}
+              <div className="flex items-center gap-1 text-sm text-gray-400 mb-4">
+                <span className="font-medium text-gray-700">${project.mrr}</span>
+                <span>{tr(t.projects.mrr, lang)}</span>
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-2 mt-auto">
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="flex-1 text-center text-sm font-medium border border-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  {tr(t.projects.viewDetails, lang)}
+                </Link>
+                <a
+                  href={project.projectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-center text-sm font-medium bg-gray-900 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                >
+                  {tr(t.projects.visitProject, lang)}
+                </a>
               </div>
             </div>
           ))}
@@ -97,23 +139,25 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section id="about" className="border-t border-gray-800">
-        <div className="max-w-5xl mx-auto px-6 py-20">
-          <h2 className="text-2xl font-bold mb-4">About This Project</h2>
-          <p className="text-gray-400 max-w-2xl leading-relaxed">
-            Build 100 Startups is a personal challenge to build and launch 100 different online products —
-            SaaS tools, AI agents, directory websites, online stores, and more.
-            Every build is documented publicly: what was built, how long it took, what worked, and what didn&apos;t.
+      <section id="about" className="border-t border-gray-100 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 py-16">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">{tr(t.nav.about, lang)}</h2>
+          <p className="text-gray-600 max-w-2xl leading-relaxed">
+            {tr(t.hero.bio, lang)}
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 px-6 py-6">
-        <div className="max-w-5xl mx-auto text-center text-gray-600 text-sm">
-          Build 100 Startups — building in public
+      <footer className="border-t border-gray-100 px-6 py-6">
+        <div className="max-w-5xl mx-auto flex items-center justify-between text-sm text-gray-400">
+          <span>{tr(t.footer.text, lang)}</span>
+          <div className="flex gap-4">
+            <a href="https://x.com/morningwuu" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">X</a>
+            <a href="https://www.linkedin.com/in/morningwu/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">LinkedIn</a>
+          </div>
         </div>
       </footer>
     </main>
-  );
+  )
 }
