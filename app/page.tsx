@@ -5,11 +5,13 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useLang } from '@/context/LanguageContext'
 import { t, tr } from '@/lib/i18n'
-import { projects, getTotalMRR, getTotalRevenue, getShippedCount } from '@/lib/projects'
+import { projects, getTotalMRR, getTotalRevenue, getShippedCount, getCurrentlyBuilding } from '@/lib/projects'
+import { journalEntries } from '@/lib/journal'
 import type { Project } from '@/lib/projects'
 import { withUTM } from '@/lib/utils'
 
-type Filter = 'All' | 'Live' | 'Building' | 'Idea'
+type StatusFilter = 'All' | 'Live' | 'Building' | 'Idea'
+type TypeFilter = 'All' | 'B2B' | 'B2C'
 
 const statusColors: Record<string, string> = {
   Live: 'bg-green-100 text-green-700',
@@ -23,25 +25,59 @@ const cardBorderColors: Record<string, string> = {
   Idea: 'border-gray-200 hover:border-gray-300',
 }
 
+const TOTAL_GOAL = 100
+
+function formatDate(dateStr: string, lang: 'en' | 'zh'): string {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+}
+
 export default function Home() {
   const { lang } = useLang()
-  const [filter, setFilter] = useState<Filter>('All')
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('All')
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>('All')
+  const [email, setEmail] = useState('')
+  const [emailSubmitted, setEmailSubmitted] = useState(false)
 
-  const filtered: Project[] = filter === 'All' ? projects : projects.filter((p) => p.status === filter)
+  const filtered: Project[] = projects.filter((p) => {
+    const statusMatch = statusFilter === 'All' || p.status === statusFilter
+    const typeMatch = typeFilter === 'All' || p.type === typeFilter
+    return statusMatch && typeMatch
+  })
 
-  const filters: { key: Filter; label: { en: string; zh: string } }[] = [
+  const currentlyBuildingList = getCurrentlyBuilding()
+  const shippedCount = getShippedCount()
+  const progressPct = Math.round((shippedCount / TOTAL_GOAL) * 100)
+
+  const statusFilters: { key: StatusFilter; label: { en: string; zh: string } }[] = [
     { key: 'All', label: t.projects.filterAll },
     { key: 'Live', label: t.projects.filterLive },
     { key: 'Building', label: t.projects.filterBuilding },
     { key: 'Idea', label: t.projects.filterIdea },
   ]
 
+  const typeFilters: { key: TypeFilter; label: { en: string; zh: string } }[] = [
+    { key: 'All', label: t.projects.filterAll },
+    { key: 'B2B', label: t.projects.filterB2B },
+    { key: 'B2C', label: t.projects.filterB2C },
+  ]
+
+  function handleEmailSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!email) return
+    // TODO: wire up to email service (e.g. Mailchimp, Buttondown, ConvertKit)
+    setEmailSubmitted(true)
+  }
+
   return (
     <main className="min-h-screen bg-white text-gray-900">
 
       {/* Hero */}
       <section className="max-w-5xl mx-auto px-6 pt-16 pb-10 text-center">
-        {/* Big headline */}
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
           {tr(t.hero.headline, lang)}
         </h1>
@@ -93,18 +129,39 @@ export default function Home() {
 
       {/* Stats */}
       <section className="border-y border-gray-100 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 py-10 grid grid-cols-3 gap-6 text-center">
-          <div>
-            <p className="text-4xl font-bold text-gray-900">{getShippedCount()}</p>
-            <p className="text-gray-500 text-sm mt-1">{tr(t.stats.shipped, lang)}</p>
+        <div className="max-w-5xl mx-auto px-6 py-10">
+          <div className="grid grid-cols-3 gap-6 text-center mb-8">
+            <div>
+              <p className="text-4xl font-bold text-gray-900">{getShippedCount()}</p>
+              <p className="text-gray-500 text-sm mt-1">{tr(t.stats.shipped, lang)}</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold text-gray-900">${getTotalMRR()}</p>
+              <p className="text-gray-500 text-sm mt-1">{tr(t.stats.mrr, lang)}</p>
+            </div>
+            <div>
+              <p className="text-4xl font-bold text-gray-900">${getTotalRevenue()}</p>
+              <p className="text-gray-500 text-sm mt-1">{tr(t.stats.revenue, lang)}</p>
+            </div>
           </div>
-          <div>
-            <p className="text-4xl font-bold text-gray-900">${getTotalMRR()}</p>
-            <p className="text-gray-500 text-sm mt-1">{tr(t.stats.mrr, lang)}</p>
-          </div>
-          <div>
-            <p className="text-4xl font-bold text-gray-900">${getTotalRevenue()}</p>
-            <p className="text-gray-500 text-sm mt-1">{tr(t.stats.revenue, lang)}</p>
+
+          {/* Progress bar */}
+          <div className="max-w-md mx-auto">
+            <div className="flex items-center justify-between mb-2 text-sm">
+              <span className="font-medium text-gray-700">
+                {lang === 'zh' ? '挑戰進度' : 'Challenge Progress'}
+              </span>
+              <span className="font-bold text-gray-900">
+                {shippedCount} <span className="text-gray-400 font-normal">/ {TOTAL_GOAL}</span>
+              </span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+              <div
+                className="bg-gray-900 h-2.5 rounded-full transition-all duration-500"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+            <p className="text-xs text-gray-400 mt-1.5 text-right">{progressPct}% {lang === 'zh' ? '完成' : 'complete'}</p>
           </div>
         </div>
       </section>
@@ -116,77 +173,184 @@ export default function Home() {
           <p className="text-gray-500">{tr(t.projects.subtitle, lang)}</p>
         </div>
 
-        {/* Filter tabs */}
-        <div className="flex items-center justify-center gap-2 mb-10">
-          {filters.map(({ key, label }) => (
-            <button
-              key={key}
-              onClick={() => setFilter(key)}
-              className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                filter === key
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-              }`}
-            >
-              {tr(label, lang)}
-              <span className={`ml-1.5 text-xs ${filter === key ? 'text-gray-300' : 'text-gray-400'}`}>
-                {key === 'All' ? projects.length : projects.filter((p) => p.status === key).length}
-              </span>
-            </button>
-          ))}
+        {/* Currently Building callout */}
+        {currentlyBuildingList.length > 0 && (
+          <div className="bg-yellow-50 border border-yellow-200 rounded-xl px-5 py-4 mb-8">
+            <p className="text-yellow-700 font-semibold text-xs uppercase tracking-wide mb-3">
+              {tr(t.currentlyBuilding.label, lang)}
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {currentlyBuildingList.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/projects/${p.slug}`}
+                  className="inline-flex items-center gap-1.5 bg-white border border-yellow-200 text-gray-800 text-sm font-medium px-3 py-1.5 rounded-lg hover:bg-yellow-100 transition-colors"
+                >
+                  {p.name}
+                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Filters */}
+        <div className="flex flex-col items-center gap-3 mb-10">
+          {/* Status filter */}
+          <div className="flex items-center gap-2">
+            {statusFilters.map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setStatusFilter(key)}
+                className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  statusFilter === key
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                }`}
+              >
+                {tr(label, lang)}
+                <span className={`ml-1.5 text-xs ${statusFilter === key ? 'text-gray-300' : 'text-gray-400'}`}>
+                  {key === 'All' ? projects.length : projects.filter((p) => p.status === key).length}
+                </span>
+              </button>
+            ))}
+          </div>
+          {/* Type filter */}
+          <div className="flex items-center gap-2">
+            {typeFilters.map(({ key, label }) => (
+              <button
+                key={key}
+                onClick={() => setTypeFilter(key)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
+                  typeFilter === key
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-indigo-50 text-indigo-400 hover:bg-indigo-100'
+                }`}
+              >
+                {tr(label, lang)}
+                <span className={`ml-1.5 text-xs ${typeFilter === key ? 'text-indigo-200' : 'text-indigo-300'}`}>
+                  {key === 'All' ? projects.length : projects.filter((p) => p.type === key).length}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((project) => (
-            <div
-              key={project.slug}
-              className={`border-2 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-all bg-white ${cardBorderColors[project.status]}`}
-            >
-              {/* Thumbnail */}
-              {project.image ? (
-                <Image src={project.image} alt={project.name} width={1200} height={630} className="w-full aspect-[1200/630] object-cover" />
-              ) : (
-                <div className="w-full aspect-[1200/630] bg-gray-100 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-gray-300 select-none">
-                    {project.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
-                  </span>
-                </div>
-              )}
+          {filtered.map((project) => {
+            const buildIndex = projects.findIndex((p) => p.slug === project.slug)
+            const buildNumber = `#${String(buildIndex + 1).padStart(3, '0')}`
+            return (
+              <div
+                key={project.slug}
+                className={`border-2 rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-all bg-white ${cardBorderColors[project.status]}`}
+              >
+                {/* Thumbnail */}
+                {project.image ? (
+                  <Image src={project.image} alt={project.name} width={1200} height={630} className="w-full aspect-[1200/630] object-cover" />
+                ) : (
+                  <div className="w-full aspect-[1200/630] bg-gray-100 flex items-center justify-center">
+                    <span className="text-4xl font-bold text-gray-300 select-none">
+                      {project.name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase()}
+                    </span>
+                  </div>
+                )}
 
-              <div className="p-5 flex flex-col flex-1">
-              <div className="flex items-start justify-between mb-3">
-                <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{project.category}</span>
-                <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${statusColors[project.status]}`}>
-                  {tr(t.status[project.status], lang)}
-                </span>
+                <div className="p-5 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono font-medium text-gray-300">{buildNumber}</span>
+                      <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{project.category}</span>
+                    </div>
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${statusColors[project.status]}`}>
+                      {tr(t.status[project.status], lang)}
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-gray-900 text-lg mb-2">{project.name}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">
+                    {tr(project.shortDescription, lang)}
+                  </p>
+                  <div className="flex items-center gap-1 text-sm text-gray-400 mb-4">
+                    <span className="font-medium text-gray-700">${project.mrr}</span>
+                    <span>{tr(t.projects.mrr, lang)}</span>
+                  </div>
+                  <div className="flex gap-2 mt-auto">
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="flex-1 text-center text-sm font-medium border border-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      {tr(t.projects.viewDetails, lang)}
+                    </Link>
+                    <a
+                      href={withUTM(project.projectUrl)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 text-center text-sm font-medium bg-gray-900 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                    >
+                      {tr(t.projects.visitProject, lang)}
+                    </a>
+                  </div>
+                </div>
               </div>
-              <h3 className="font-semibold text-gray-900 text-lg mb-2">{project.name}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">
-                {tr(project.shortDescription, lang)}
-              </p>
-              <div className="flex items-center gap-1 text-sm text-gray-400 mb-4">
-                <span className="font-medium text-gray-700">${project.mrr}</span>
-                <span>{tr(t.projects.mrr, lang)}</span>
-              </div>
-              <div className="flex gap-2 mt-auto">
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="flex-1 text-center text-sm font-medium border border-gray-200 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  {tr(t.projects.viewDetails, lang)}
-                </Link>
-                <a
-                  href={withUTM(project.projectUrl)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 text-center text-sm font-medium bg-gray-900 text-white px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors"
-                >
-                  {tr(t.projects.visitProject, lang)}
-                </a>
-              </div>
-              </div>
-            </div>
-          ))}
+            )
+          })}
+        </div>
+      </section>
+
+      {/* Journal */}
+      <section id="journal" className="border-t border-gray-100 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 py-16">
+          <div className="mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-1">{tr(t.journal.title, lang)}</h2>
+            <p className="text-gray-500">{tr(t.journal.subtitle, lang)}</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {journalEntries.map((entry) => (
+              <article key={entry.id} className="bg-white border border-gray-100 rounded-xl p-6 flex flex-col hover:shadow-sm transition-shadow">
+                <p className="text-xs text-gray-400 mb-3">{formatDate(entry.date, lang)}</p>
+                <h3 className="font-semibold text-gray-900 mb-2 leading-snug">{tr(entry.title, lang)}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{tr(entry.excerpt, lang)}</p>
+                {entry.projectSlug && (
+                  <Link
+                    href={`/projects/${entry.projectSlug}`}
+                    className="text-xs text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+                  >
+                    {tr(t.journal.readMore, lang)}
+                  </Link>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Email capture */}
+      <section className="border-t border-gray-100 bg-white">
+        <div className="max-w-xl mx-auto px-6 py-16 text-center">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">{tr(t.email.title, lang)}</h2>
+          <p className="text-gray-500 mb-8 leading-relaxed">{tr(t.email.subtitle, lang)}</p>
+          {emailSubmitted ? (
+            <p className="text-green-600 font-medium text-lg">{tr(t.email.success, lang)}</p>
+          ) : (
+            <form onSubmit={handleEmailSubmit} className="flex gap-2 max-w-sm mx-auto">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={tr(t.email.placeholder, lang)}
+                className="flex-1 border border-gray-200 rounded-lg px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent"
+              />
+              <button
+                type="submit"
+                className="bg-gray-900 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-700 transition-colors whitespace-nowrap"
+              >
+                {tr(t.email.button, lang)}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 

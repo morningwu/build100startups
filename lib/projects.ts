@@ -3,6 +3,8 @@ export type Project = {
   name: string
   category: string
   status: 'Live' | 'Building' | 'Idea'
+  type: 'B2B' | 'B2C'
+  currentlyBuilding?: boolean
   image: string | null
   shortDescription: { en: string; zh: string }
   longDescription: { en: string; zh: string }
@@ -13,11 +15,13 @@ export type Project = {
   tools: string[]
   monetization: { en: string; zh: string }
   marketingPlan: { en: string; zh: string }
+  whatILearned: { en: string; zh: string }
 }
 
 export const projects: Project[] = [
   {
     slug: 'buildwithvibecode',
+    type: 'B2C',
     image: '/photos/buildwithvibecode.png',
     name: 'BuiltWith VibeCode',
     category: 'Directory Site',
@@ -43,9 +47,14 @@ export const projects: Project[] = [
       en: 'Launched on Product Hunt and shared in indie hacker communities. Growing organically via SEO by targeting long-tail keywords around AI coding tools.',
       zh: '在 Product Hunt 上線並分享至獨立駭客社群。透過 SEO 針對 AI 程式工具的長尾關鍵字實現自然增長。',
     },
+    whatILearned: {
+      en: 'Building a directory is 80% content curation, 20% tech. The hard part isn\'t the site — it\'s getting people to submit consistently. Seed it manually before building an automated submission flow.',
+      zh: '建立目錄網站 80% 是內容策展，20% 是技術。難點不在於建站，而在於讓人們持續提交。在建立自動化提交流程之前先手動填充初始內容。',
+    },
   },
   {
     slug: 'muse-digital-print',
+    type: 'B2C',
     image: '/photos/museprintsdigital-v2.png',
     name: 'Muse Prints Digital',
     category: 'Etsy Store',
@@ -71,13 +80,19 @@ export const projects: Project[] = [
       en: 'Etsy SEO optimization is the main growth driver. Also posting designs on Pinterest and Instagram to drive external traffic to the shop.',
       zh: 'Etsy SEO 優化是主要增長驅動力。同時在 Pinterest 和 Instagram 發布設計，為商店帶來外部流量。',
     },
+    whatILearned: {
+      en: 'Digital products on Etsy are largely an SEO game — title, tags, and thumbnail are everything. Midjourney + minimal post-processing can produce commercial-quality fine art prints in hours, not weeks.',
+      zh: 'Etsy 上的數位產品很大程度上是 SEO 遊戲——標題、標籤和縮圖決定一切。Midjourney 加最少後期處理，可在幾小時而非幾週內產出商業品質的精緻藝術印刷品。',
+    },
   },
   {
     slug: 'cs-engine',
+    type: 'B2B',
     image: '/photos/csengine-v2.png',
     name: 'CS Engine',
     category: 'AI Agent',
-    status: 'Building',
+    status: 'Live',
+    currentlyBuilding: true,
     shortDescription: {
       en: 'An AI-powered Customer Intelligence Engine built for an ecommerce brand to automate CS workflows and turn support data into growth insights.',
       zh: '為電商品牌打造的 AI 客服智能引擎，自動化客服流程並將支援數據轉化為成長洞察。',
@@ -99,9 +114,14 @@ export const projects: Project[] = [
       en: 'Internal use only — no public launch planned at this stage. If productised, the go-to-market would target Shopify merchants via communities, DTC forums, and direct outreach.',
       zh: '僅供內部使用——目前階段無公開上線計畫。若產品化，上市策略將透過社群、DTC 論壇和直接外展鎖定 Shopify 商家。',
     },
+    whatILearned: {
+      en: 'Building AI for a real client forces you to care about reliability, not just cleverness. Edge cases in production are 10x harder than in dev. Start simple, nail the 80% case, then layer in sophistication.',
+      zh: '為真實客戶建立 AI 系統迫使你關注可靠性而非只是聰明。生產環境的邊緣情況比開發測試難 10 倍。從簡單開始，解決 80% 的情況，再逐步增加複雜度。',
+    },
   },
   {
     slug: 'snap2color',
+    type: 'B2C',
     image: '/photos/snap2color.png',
     name: 'Snap2Color',
     category: 'AI App',
@@ -127,13 +147,19 @@ export const projects: Project[] = [
       en: 'Targeting parents, teachers and coloring enthusiasts on Pinterest and TikTok. SEO content around "photo to coloring page" keywords.',
       zh: '鎖定 Pinterest 和 TikTok 上的家長、教師和著色愛好者。針對「照片轉著色頁」關鍵字進行 SEO 內容建設。',
     },
+    whatILearned: {
+      en: 'Simple utility apps are the most underrated. They do one thing, do it well, and users get the value instantly. AI compressed what would\'ve been a multi-day build into a single afternoon.',
+      zh: '簡單的工具應用程式是最被低估的。它們只做一件事、做得很好，用戶能立即理解價值。AI 把一個多天的專案壓縮成一個下午的作業。',
+    },
   },
   {
     slug: 'saas-foundry',
+    type: 'B2B',
     image: null,
     name: 'SaaS Foundry',
     category: 'AI App',
     status: 'Building',
+    currentlyBuilding: true,
     shortDescription: {
       en: 'Audit your business and generate validated SaaS ideas that drive free organic traffic.',
       zh: '審查你的業務並生成經過驗證的 SaaS 創意，帶來免費自然流量。',
@@ -155,9 +181,14 @@ export const projects: Project[] = [
       en: 'Target bootstrapped founders and solopreneurs on X and indie hacker communities. SEO content around SaaS ideas and traffic generation keywords.',
       zh: '鎖定 X 和獨立駭客社群上的自力更生創辦人和獨立創業者。針對 SaaS 創意和流量生成關鍵字進行 SEO 內容建設。',
     },
+    whatILearned: {
+      en: 'Idea generation tools are hard to monetize — users want "the answer", not a process. Still figuring out the right angle. The audit framework is solid but the output needs to be more opinionated.',
+      zh: '創意生成工具很難變現——用戶想要「答案」而非流程。仍在摸索正確切入點。審查框架很紮實，但輸出需要更有觀點。',
+    },
   },
   {
     slug: 'dreamteller',
+    type: 'B2C',
     image: '/photos/dreamteller.png',
     name: 'DreamTeller',
     category: 'AI App',
@@ -183,9 +214,14 @@ export const projects: Project[] = [
       en: 'Target wellness and self-improvement communities on TikTok, Instagram and Reddit. Dream content is highly shareable — leaning into viral dream interpretation posts.',
       zh: '鎖定 TikTok、Instagram 和 Reddit 上的健康和自我提升社群。夢境內容高度可分享——利用病毒式夢境解析貼文。',
     },
+    whatILearned: {
+      en: 'Niche communities care about authenticity above everything. Dream analysis enthusiasts can spot a generic AI response immediately. The product has to genuinely understand the craft.',
+      zh: '利基社群最在乎真實性。夢境分析愛好者能立刻識別通用的 AI 回應。產品必須真正理解這門技藝。',
+    },
   },
   {
     slug: 'agent-squad',
+    type: 'B2B',
     image: '/photos/agentsquad.png',
     name: 'Agent Squad',
     category: 'AI Agent',
@@ -211,9 +247,48 @@ export const projects: Project[] = [
       en: 'Targeting founders and solo marketers on X and LinkedIn. Demo videos showing AI agents in action will be the primary growth engine.',
       zh: '鎖定 X 和 LinkedIn 上的創辦人和單人行銷人員。展示 AI 智能體實際運作的示範影片將是主要增長引擎。',
     },
+    whatILearned: {
+      en: 'The hardest part of multi-agent systems isn\'t the AI — it\'s defining roles precisely enough that agents don\'t overlap or conflict. Treat each agent like a job description, not a prompt.',
+      zh: '多智能體系統最難的不是 AI——而是精確定義角色，讓智能體不重疊或衝突。把每個智能體當作職位描述而非提示詞。',
+    },
+  },
+  {
+    slug: 'startup-weekend',
+    type: 'B2C',
+    image: null,
+    name: 'Startup Weekend Playbook',
+    category: 'Playbook',
+    status: 'Building',
+    currentlyBuilding: true,
+    shortDescription: {
+      en: 'A step-by-step playbook to help you build and launch your startup in 48 hours — just one weekend.',
+      zh: '一本手把手的行動手冊，幫助你在 48 小時內打造並上線你的創業產品——就一個週末。',
+    },
+    longDescription: {
+      en: 'StartupWeekend Online Sprint is a structured playbook designed to take you from idea to launched product in a single weekend — 48 hours, no excuses. It breaks the process into clear time-boxed sprints: Friday night for idea validation, Saturday for building, Sunday for launching and getting your first users. With AI tools doing the heavy lifting, one weekend is genuinely enough to ship something real. This is for people who keep saying "I\'ll start next week" — the playbook forces you to start now.',
+      zh: 'StartupWeekend Online Sprint 是一本結構化的行動手冊，旨在讓你在一個週末內從想法到上線產品——48 小時，沒有藉口。它將過程分解為清晰的時間盒衝刺：週五晚上驗證想法，週六打造產品，週日上線並獲得第一批用戶。有了 AI 工具承擔繁重工作，一個週末確實足夠發布真實的東西。這是為那些總說「我下週開始」的人準備的——這本手冊強迫你現在就開始。',
+    },
+    projectUrl: '#',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Notion', 'Claude API', 'v0', 'Vercel'],
+    monetization: {
+      en: 'One-time purchase playbook at $19. Potential to bundle with live cohort sprints at $99 per weekend session.',
+      zh: '一次性購買手冊定價 19 美元。有潛力與每週末 99 美元的現場隊列衝刺活動捆綁銷售。',
+    },
+    marketingPlan: {
+      en: 'Target procrastinating founders on X and indie hacker communities. "I built a startup in 48 hours" content will drive organic interest.',
+      zh: '鎖定 X 和獨立駭客社群上拖延的創辦人。「我在 48 小時內建了一個創業公司」的內容將帶動自然關注。',
+    },
+    whatILearned: {
+      en: 'A good playbook is one you could follow half-asleep. If the instructions need interpretation, they\'re too vague. The 48-hour constraint is a feature, not a bug — constraints force decisions.',
+      zh: '好的行動手冊是你半睡半醒也能跟著做的。如果指引需要詮釋，那就太模糊了。48 小時限制是特性而非缺陷——約束迫使決策。',
+    },
   },
   {
     slug: 'career-ai',
+    type: 'B2C',
     image: null,
     name: 'CareerAI',
     category: 'AI Agent',
@@ -239,6 +314,10 @@ export const projects: Project[] = [
       en: 'Target job seekers on LinkedIn and Reddit career communities. Partner with bootcamps and career transition communities for co-marketing.',
       zh: '鎖定 LinkedIn 和 Reddit 職涯社群的求職者。與訓練營和職涯轉換社群合作進行聯合行銷。',
     },
+    whatILearned: {
+      en: 'Career tools require an extraordinary level of trust. People are putting their livelihoods in your hands. The product needs to be accurate and feel deeply human, not just technically correct.',
+      zh: '職涯工具需要極高程度的信任。人們把生計交到你手上。產品需要準確，且感覺非常人性化，而不只是技術上正確。',
+    },
   },
 ]
 
@@ -256,4 +335,14 @@ export function getTotalRevenue(): number {
 
 export function getShippedCount(): number {
   return projects.length
+}
+
+export function getCurrentlyBuilding(): Project[] {
+  return projects.filter((p) => p.currentlyBuilding)
+}
+
+export function getBuildNumber(slug: string): string {
+  const index = projects.findIndex((p) => p.slug === slug)
+  if (index === -1) return '#???'
+  return `#${String(index + 1).padStart(3, '0')}`
 }

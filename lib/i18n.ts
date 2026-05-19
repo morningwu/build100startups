@@ -35,6 +35,8 @@ export const t = {
     filterLive: { en: 'Live', zh: '已上線' },
     filterBuilding: { en: 'Building', zh: '建造中' },
     filterIdea: { en: 'Idea', zh: '構想中' },
+    filterB2B: { en: 'B2B', zh: 'B2B' },
+    filterB2C: { en: 'B2C', zh: 'B2C' },
   },
   detail: {
     backToAll: { en: '← All Builds', zh: '← 所有專案' },
@@ -46,6 +48,23 @@ export const t = {
     monetization: { en: 'Monetization', zh: '獲利模式' },
     tools: { en: 'Tools Used', zh: '使用工具' },
     marketing: { en: 'Marketing & Launch Plan', zh: '行銷與上線計畫' },
+    whatILearned: { en: '💡 What I Learned', zh: '💡 我學到了什麼' },
+  },
+  journal: {
+    title: { en: 'Builder\'s Journal', zh: '創業日誌' },
+    subtitle: { en: 'Raw thoughts, lessons, and updates from the journey.', zh: '來自這段旅程的真實想法、心得與更新。' },
+    readMore: { en: 'Read more →', zh: '閱讀更多 →' },
+  },
+  currentlyBuilding: {
+    label: { en: '🔨 Currently Building', zh: '🔨 目前建造中' },
+    cta: { en: 'See details →', zh: '查看詳情 →' },
+  },
+  email: {
+    title: { en: 'Follow the Journey', zh: '追蹤這段旅程' },
+    subtitle: { en: 'Get a quick update every time I ship something new. No spam, unsubscribe anytime.', zh: '每次我發布新產品時收到簡短更新。無垃圾郵件，隨時可取消訂閱。' },
+    placeholder: { en: 'your@email.com', zh: 'your@email.com' },
+    button: { en: 'Subscribe', zh: '訂閱' },
+    success: { en: '🎉 You\'re in! I\'ll keep you posted.', zh: '🎉 訂閱成功！我會持續更新你。' },
   },
   status: {
     Live: { en: 'Live', zh: '已上線' },

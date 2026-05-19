@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { useLang } from '@/context/LanguageContext'
 import { t, tr } from '@/lib/i18n'
-import { getProjectBySlug } from '@/lib/projects'
+import { getProjectBySlug, getBuildNumber } from '@/lib/projects'
 import { withUTM } from '@/lib/utils'
 import { use } from 'react'
 
@@ -19,6 +19,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const { slug } = use(params)
   const { lang } = useLang()
   const project = getProjectBySlug(slug)
+  const buildNumber = project ? getBuildNumber(slug) : ''
 
   if (!project) notFound()
 
@@ -50,8 +51,11 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
 
         {/* Title row */}
         <div className="flex items-start justify-between gap-4 mb-2">
-          <h1 className="text-3xl font-bold text-gray-900">{project.name}</h1>
-          <span className={`text-sm px-3 py-1 rounded-full font-medium shrink-0 ${statusColors[project.status]}`}>
+          <div>
+            <span className="text-sm font-mono text-gray-400 mb-1 block">{buildNumber}</span>
+            <h1 className="text-3xl font-bold text-gray-900">{project.name}</h1>
+          </div>
+          <span className={`text-sm px-3 py-1 rounded-full font-medium shrink-0 mt-6 ${statusColors[project.status]}`}>
             {tr(t.status[project.status], lang)}
           </span>
         </div>
@@ -122,6 +126,16 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
         <section className="mb-8">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">{tr(t.detail.marketing, lang)}</h2>
           <p className="text-gray-600 leading-relaxed">{tr(project.marketingPlan, lang)}</p>
+        </section>
+
+        <hr className="border-gray-100 mb-8" />
+
+        {/* What I Learned */}
+        <section className="mb-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">{tr(t.detail.whatILearned, lang)}</h2>
+          <div className="bg-amber-50 border border-amber-100 rounded-xl p-5">
+            <p className="text-gray-700 leading-relaxed">{tr(project.whatILearned, lang)}</p>
+          </div>
         </section>
 
       </div>
