@@ -287,6 +287,39 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'andrew-investment-buddy',
+    type: 'B2C',
+    image: null,
+    name: 'Andrew — Your Investment Buddy',
+    category: 'AI Agent',
+    status: 'Idea',
+    shortDescription: {
+      en: 'Tell Andrew who you are, your financial goals and monthly income — he\'ll analyse your portfolio and give you personalised monthly investment advice like a trusted pal.',
+      zh: '告訴 Andrew 你是誰、你的財務目標和每月收入——他會像一個信任的好友一樣分析你的投資組合，並給你個人化的每月投資建議。',
+    },
+    longDescription: {
+      en: 'Andrew is your AI investment buddy — not a cold, corporate financial advisor, but a pal who actually gets your situation. Tell him where you\'re based, what you earn, what you want to achieve financially, and what you\'re already invested in. Andrew analyses your portfolio against your goals and income, factors in your local market and tax context, and delivers clear, jargon-free monthly advice on what to do next. Rebalance here, consider this, avoid that — all explained like a smart friend who happens to know a lot about money.',
+      zh: 'Andrew 是你的 AI 投資夥伴——不是冷冰冰的企業財務顧問，而是一個真正了解你情況的好朋友。告訴他你在哪裡、你的收入、你的財務目標，以及你目前的投資組合。Andrew 根據你的目標和收入分析你的投資組合，考慮你當地的市場和稅務背景，每月提供清晰、無術語的建議。該在哪裡調整、考慮什麼、避免什麼——都像一個剛好懂很多投資知識的聰明朋友來解釋。',
+    },
+    projectUrl: '#',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Next.js', 'Claude API', 'Supabase', 'Tailwind CSS', 'Vercel'],
+    monetization: {
+      en: 'Freemium — free for basic monthly snapshot. Pro at $12/month for full portfolio analysis, personalised advice, and goal tracking.',
+      zh: 'Freemium——基本每月快照免費。Pro 方案每月 12 美元，享有完整投資組合分析、個人化建議和目標追蹤。',
+    },
+    marketingPlan: {
+      en: 'Target young professionals and first-time investors on TikTok, Reddit personal finance communities, and X. "My AI buddy told me to do this with my money" content will drive organic growth.',
+      zh: '鎖定 TikTok、Reddit 個人理財社群和 X 上的年輕專業人士和首次投資者。「我的 AI 夥伴告訴我這樣處理我的錢」的內容將帶動自然增長。',
+    },
+    whatILearned: {
+      en: 'Still in idea stage — no learnings yet.',
+      zh: '仍在構想階段——尚無心得。',
+    },
+  },
+  {
     slug: 'scammer-scanner',
     type: 'B2C',
     image: null,
