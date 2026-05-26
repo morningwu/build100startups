@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation'
 import { useLang } from '@/context/LanguageContext'
 import { t, tr } from '@/lib/i18n'
 import { getProjectBySlug, getBuildNumber } from '@/lib/projects'
+import { journalEntries } from '@/lib/journal'
 import { withUTM } from '@/lib/utils'
 import { use } from 'react'
 
@@ -20,6 +21,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
   const { lang } = useLang()
   const project = getProjectBySlug(slug)
   const buildNumber = project ? getBuildNumber(slug) : ''
+  const projectJournal = journalEntries.filter((e) => e.projectSlug === slug)
 
   if (!project) notFound()
 
@@ -137,6 +139,29 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
             <p className="text-gray-700 leading-relaxed">{tr(project.whatILearned, lang)}</p>
           </div>
         </section>
+
+        {/* Journal entries for this project */}
+        {projectJournal.length > 0 && (
+          <>
+            <hr className="border-gray-100 mb-8" />
+            <section className="mb-8">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4">{tr(t.journal.title, lang)}</h2>
+              <div className="flex flex-col gap-6">
+                {projectJournal.map((entry) => (
+                  <article key={entry.id} className="border border-gray-100 rounded-xl p-6">
+                    <p className="text-xs text-gray-400 mb-2">
+                      {new Date(entry.date).toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', {
+                        year: 'numeric', month: 'long', day: 'numeric',
+                      })}
+                    </p>
+                    <h3 className="font-semibold text-gray-900 mb-3">{tr(entry.title, lang)}</h3>
+                    <p className="text-gray-600 text-sm leading-relaxed whitespace-pre-line">{tr(entry.body, lang)}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
       </div>
     </main>

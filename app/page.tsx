@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { useLang } from '@/context/LanguageContext'
 import { t, tr } from '@/lib/i18n'
 import { projects, getTotalMRR, getTotalRevenue, getShippedCount, getCurrentlyBuilding } from '@/lib/projects'
-import { journalEntries } from '@/lib/journal'
+
 import type { Project } from '@/lib/projects'
 import { withUTM } from '@/lib/utils'
 
@@ -26,15 +26,6 @@ const cardBorderColors: Record<string, string> = {
 }
 
 const TOTAL_GOAL = 100
-
-function formatDate(dateStr: string, lang: 'en' | 'zh'): string {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString(lang === 'zh' ? 'zh-TW' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-}
 
 export default function Home() {
   const { lang } = useLang()
@@ -296,33 +287,6 @@ export default function Home() {
               </div>
             )
           })}
-        </div>
-      </section>
-
-      {/* Journal */}
-      <section id="journal" className="border-t border-gray-100 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 py-16">
-          <div className="mb-10">
-            <h2 className="text-2xl font-bold text-gray-900 mb-1">{tr(t.journal.title, lang)}</h2>
-            <p className="text-gray-500">{tr(t.journal.subtitle, lang)}</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {journalEntries.map((entry) => (
-              <article key={entry.id} className="bg-white border border-gray-100 rounded-xl p-6 flex flex-col hover:shadow-sm transition-shadow">
-                <p className="text-xs text-gray-400 mb-3">{formatDate(entry.date, lang)}</p>
-                <h3 className="font-semibold text-gray-900 mb-2 leading-snug">{tr(entry.title, lang)}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{tr(entry.excerpt, lang)}</p>
-                {entry.projectSlug && (
-                  <Link
-                    href={`/projects/${entry.projectSlug}`}
-                    className="text-xs text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
-                  >
-                    {tr(t.journal.readMore, lang)}
-                  </Link>
-                )}
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 
