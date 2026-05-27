@@ -6,6 +6,26 @@ import { notFound } from 'next/navigation'
 import { useLang } from '@/context/LanguageContext'
 import { t, tr } from '@/lib/i18n'
 import { getProjectBySlug, getBuildNumber } from '@/lib/projects'
+
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/(\[.+?\]\(.+?\))/g)
+  return (
+    <>
+      {parts.map((part, i) => {
+        const match = part.match(/\[(.+?)\]\((.+?)\)/)
+        if (match) {
+          return (
+            <a key={i} href={match[2]} target="_blank" rel="noopener noreferrer"
+              className="text-indigo-600 hover:text-indigo-800 underline underline-offset-2 transition-colors">
+              {match[1]}
+            </a>
+          )
+        }
+        return <span key={i}>{part}</span>
+      })}
+    </>
+  )
+}
 import { journalEntries } from '@/lib/journal'
 import { withUTM } from '@/lib/utils'
 import { use } from 'react'
@@ -97,7 +117,7 @@ export default function ProjectPage({ params }: { params: Promise<{ slug: string
         {/* About */}
         <section className="mb-8">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">{tr(t.detail.about, lang)}</h2>
-          <p className="text-gray-600 leading-relaxed">{tr(project.longDescription, lang)}</p>
+          <p className="text-gray-600 leading-relaxed"><RichText text={tr(project.longDescription, lang)} /></p>
         </section>
 
         <hr className="border-gray-100 mb-8" />

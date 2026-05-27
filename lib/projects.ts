@@ -298,7 +298,7 @@ export const projects: Project[] = [
       zh: '專為行銷人員打造的 AI 提示詞與資源精選庫，幫助行銷人員在 AI 時代保持競爭力。',
     },
     longDescription: {
-      en: 'Marketer Prompt is the go-to prompt library for marketing professionals navigating the AI era — think WallStreetPrompt but built for marketers. It\'s a curated, constantly updated stack of battle-tested prompts for every marketing discipline: brand strategy, copywriting, social media, SEO, email campaigns, paid ads, competitor research, and more. Each prompt comes with context on when to use it, how to customise it, and what output to expect. It\'s not just a list — it\'s a survival kit for marketers who refuse to get left behind.',
+      en: 'Marketer Prompt is the go-to prompt library for marketing professionals navigating the AI era — think [WallStreetPrompt](https://wallstreetprompt.com/) but built for marketers. It\'s a curated, constantly updated stack of battle-tested prompts for every marketing discipline: brand strategy, copywriting, social media, SEO, email campaigns, paid ads, competitor research, and more. Each prompt comes with context on when to use it, how to customise it, and what output to expect. It\'s not just a list — it\'s a survival kit for marketers who refuse to get left behind.',
       zh: 'Marketer Prompt 是行銷專業人員應對 AI 時代的首選提示詞庫——類似 WallStreetPrompt，但專為行銷人員打造。這是一個精選、持續更新的實戰提示詞庫，涵蓋每個行銷領域：品牌策略、文案撰寫、社群媒體、SEO、電子郵件行銷、付費廣告、競品研究等。每個提示詞都附有使用時機說明、自定義方法和預期輸出。這不只是一份列表——而是拒絕被淘汰的行銷人員的生存工具包。',
     },
     projectUrl: '#',
