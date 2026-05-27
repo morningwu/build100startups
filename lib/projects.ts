@@ -287,6 +287,72 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'marketer-prompt',
+    type: 'B2C',
+    image: null,
+    name: 'Marketer Prompt',
+    category: 'Prompt Library',
+    status: 'Idea',
+    shortDescription: {
+      en: 'A curated stack of AI prompts and resources built specifically for marketers to stay sharp and relevant in the AI era.',
+      zh: '專為行銷人員打造的 AI 提示詞與資源精選庫，幫助行銷人員在 AI 時代保持競爭力。',
+    },
+    longDescription: {
+      en: 'Marketer Prompt is the go-to prompt library for marketing professionals navigating the AI era — think WallStreetPrompt but built for marketers. It\'s a curated, constantly updated stack of battle-tested prompts for every marketing discipline: brand strategy, copywriting, social media, SEO, email campaigns, paid ads, competitor research, and more. Each prompt comes with context on when to use it, how to customise it, and what output to expect. It\'s not just a list — it\'s a survival kit for marketers who refuse to get left behind.',
+      zh: 'Marketer Prompt 是行銷專業人員應對 AI 時代的首選提示詞庫——類似 WallStreetPrompt，但專為行銷人員打造。這是一個精選、持續更新的實戰提示詞庫，涵蓋每個行銷領域：品牌策略、文案撰寫、社群媒體、SEO、電子郵件行銷、付費廣告、競品研究等。每個提示詞都附有使用時機說明、自定義方法和預期輸出。這不只是一份列表——而是拒絕被淘汰的行銷人員的生存工具包。',
+    },
+    projectUrl: '#',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Next.js', 'Tailwind CSS', 'Notion', 'Vercel'],
+    monetization: {
+      en: 'Freemium — free access to basic prompts. Pro at $12/month for the full library, new prompts weekly, and a private community.',
+      zh: 'Freemium——基本提示詞免費存取。Pro 方案每月 12 美元，享有完整提示詞庫、每週新提示詞和私人社群。',
+    },
+    marketingPlan: {
+      en: 'Target marketing professionals on LinkedIn and X. "The prompt that wrote my entire campaign" content format will drive shares and signups.',
+      zh: '鎖定 LinkedIn 和 X 上的行銷專業人員。「幫我完成整個行銷活動的提示詞」內容格式將帶動分享和註冊。',
+    },
+    whatILearned: {
+      en: 'Still in idea stage — no learnings yet.',
+      zh: '仍在構想階段——尚無心得。',
+    },
+  },
+  {
+    slug: 'medical-prompt',
+    type: 'B2B',
+    image: null,
+    name: 'Medical Prompt',
+    category: 'Prompt Library',
+    status: 'Idea',
+    shortDescription: {
+      en: 'A curated library of AI prompts designed to help medical professionals perform more effective and structured diagnoses.',
+      zh: '專為醫療專業人員設計的 AI 提示詞精選庫，幫助進行更有效、更有條理的診斷。',
+    },
+    longDescription: {
+      en: 'Medical Prompt is a structured prompt library built for doctors, nurses, and medical professionals who want to leverage AI in their clinical workflow without compromising accuracy or safety. Each prompt is designed to support — not replace — clinical judgment: differential diagnosis frameworks, patient history summaries, symptom pattern analysis, referral letter drafting, and clinical note generation. Every prompt is built with medical context in mind and reviewed for clinical appropriateness. Think of it as giving every medical professional a highly capable AI assistant that speaks their language.',
+      zh: 'Medical Prompt 是為醫生、護士和醫療專業人員打造的結構化提示詞庫，幫助他們在臨床工作流程中利用 AI，同時不犧牲準確性或安全性。每個提示詞旨在支持——而非取代——臨床判斷：鑑別診斷框架、患者病史摘要、症狀模式分析、轉診信起草和臨床筆記生成。每個提示詞都以醫療背景為基礎建立，並經過臨床適當性審查。把它想像成為每位醫療專業人員提供一個懂他們語言的高能力 AI 助手。',
+    },
+    projectUrl: '#',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Next.js', 'Tailwind CSS', 'Supabase', 'Vercel'],
+    monetization: {
+      en: 'B2B subscription — $29/month per practitioner, with team plans for clinics and hospitals. Compliance and audit trail features in enterprise tier.',
+      zh: 'B2B 訂閱——每位從業者每月 29 美元，診所和醫院有團隊方案。企業方案包含合規和審計追蹤功能。',
+    },
+    marketingPlan: {
+      en: 'Target medical professionals via healthcare LinkedIn communities, medical associations, and conference sponsorships. Word-of-mouth within hospital networks will be key.',
+      zh: '透過醫療 LinkedIn 社群、醫療協會和會議贊助鎖定醫療專業人員。醫院網絡內的口碑傳播將是關鍵。',
+    },
+    whatILearned: {
+      en: 'Still in idea stage — no learnings yet.',
+      zh: '仍在構想階段——尚無心得。',
+    },
+  },
+  {
     slug: 'andrew-investment-buddy',
     type: 'B2C',
     image: null,
