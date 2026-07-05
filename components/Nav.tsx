@@ -8,14 +8,12 @@ export default function Nav() {
 
   return (
     <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
-      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="/" className="font-bold text-gray-900 text-lg tracking-tight">
+      <div className="max-w-3xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-3">
+        <a href="/" className="font-bold text-gray-900 text-sm md:text-lg tracking-tight shrink-0">
           Morning's Building Hub
         </a>
-        <div className="flex items-center gap-6">
-          <nav className="flex gap-6 text-sm text-gray-500">
-            <a href="#projects" className="hover:text-gray-900 transition-colors">{tr(t.nav.projects, lang)}</a>
-          </nav>
+        <div className="flex items-center gap-3">
+          {/* Social icons */}
           <div className="flex items-center gap-3">
             <a href="mailto:morningmaker1@gmail.com"
               className="text-gray-400 hover:text-gray-900 transition-colors">
@@ -36,18 +34,19 @@ export default function Nav() {
               </svg>
             </a>
           </div>
-          <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1 text-sm">
+          {/* Language toggle */}
+          <div className="flex items-center gap-0.5 bg-gray-100 rounded-lg p-1 text-xs md:text-sm">
             <button
               onClick={() => setLang('en')}
               className={`px-2 py-1 rounded-md transition-colors ${lang === 'en' ? 'bg-white shadow-sm font-medium text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
             >
-              🇬🇧 EN
+              EN
             </button>
             <button
               onClick={() => setLang('zh')}
               className={`px-2 py-1 rounded-md transition-colors ${lang === 'zh' ? 'bg-white shadow-sm font-medium text-gray-900' : 'text-gray-500 hover:text-gray-700'}`}
             >
-              🇹🇼 中文
+              中文
             </button>
           </div>
         </div>
