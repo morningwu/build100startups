@@ -5,6 +5,7 @@ export type Project = {
   status: 'Live' | 'Building' | 'Idea'
   type: 'B2B' | 'B2C'
   currentlyBuilding?: boolean
+  badge?: string
   image: string | null
   shortDescription: { en: string; zh: string }
   longDescription: { en: string; zh: string }
@@ -19,6 +20,39 @@ export type Project = {
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'afterwork-academy',
+    type: 'B2C',
+    image: null,
+    name: 'AfterWork Startup Academy',
+    category: 'Learning Platform',
+    status: 'Live',
+    shortDescription: {
+      en: 'A learning academy helping working professionals build and launch their first startup after hours — structured programs, real projects, no fluff.',
+      zh: '幫助上班族在業餘時間打造並上線第一個創業產品的學習學院——結構化課程、真實專案、零廢話。',
+    },
+    longDescription: {
+      en: 'AfterWork Startup Academy is the home base for aspiring founders who still have a day job. It offers structured programs, resources, and community for professionals who want to build something real without quitting their 9-to-5. The academy focuses on practical, actionable learning — validating ideas, building with AI, and shipping fast — all designed to fit around a full-time schedule.',
+      zh: 'AfterWork Startup Academy 是仍有全職工作的有抱負創業者的根據地。它為希望在不辭去朝九晚五工作的情況下建造真實產品的上班族提供結構化課程、資源和社群。學院專注於實用、可執行的學習——驗證想法、使用 AI 建造、快速發布——全部設計成適合全職工作時間表。',
+    },
+    projectUrl: 'https://www.afterworkstartup.com',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Next.js', 'Tailwind CSS', 'Vercel'],
+    monetization: {
+      en: 'Program enrollment fees and membership subscriptions for ongoing access to content, community, and coaching.',
+      zh: '課程報名費和會員訂閱，提供持續存取內容、社群和輔導的權限。',
+    },
+    marketingPlan: {
+      en: 'Target ambitious professionals on LinkedIn, X, and newsletter communities. Positioning around "build without quitting" resonates strongly with the 9-to-5 audience.',
+      zh: '鎖定 LinkedIn、X 和電子報社群上有抱負的上班族。「不辭職也能創業」的定位對朝九晚五族群有強烈共鳴。',
+    },
+    whatILearned: {
+      en: 'Branding matters as much as content. "AfterWork" instantly communicates who this is for — no explanation needed. A clear, specific audience beats a broad one every time.',
+      zh: '品牌形象和內容一樣重要。「AfterWork」立刻傳達了目標受眾是誰——無需解釋。清晰、具體的受眾定位永遠優於廣泛定位。',
+    },
+  },
   {
     slug: 'afterwork-startup',
     type: 'B2C',
@@ -86,39 +120,6 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'social-space-reporting',
-    type: 'B2B',
-    image: null,
-    name: 'Auto Reporting System for Social Space',
-    category: 'AI Agent',
-    status: 'Live',
-    shortDescription: {
-      en: 'An automated reporting system built for Social Space — turning raw social media data into clean, client-ready reports without the manual work.',
-      zh: '為 Social Space 打造的自動化報告系統——將原始社群媒體數據轉化為整潔的客戶報告，無需手動處理。',
-    },
-    longDescription: {
-      en: 'Social Space needed a faster way to deliver performance reports to their clients without spending hours manually pulling data and formatting slides. This automated reporting system connects to their data sources, processes the metrics, and generates polished, branded reports on a schedule. What used to take hours now happens automatically — freeing the team to focus on strategy, not spreadsheets.',
-      zh: 'Social Space 需要一種更快的方式向客戶交付績效報告，而不必花費數小時手動提取數據和格式化幻燈片。這個自動化報告系統連接到他們的數據來源，處理指標，並按計劃生成精美的品牌報告。過去需要數小時的工作現在自動完成——讓團隊專注於策略，而不是試算表。',
-    },
-    projectUrl: 'https://thesocialspace.netlify.app',
-    mrr: 0,
-    monthlyVisitors: 0,
-    totalRevenue: 0,
-    tools: ['Claude API', 'n8n', 'Netlify', 'Make'],
-    monetization: {
-      en: 'Built as a custom solution for Social Space. Potential to productise into a reporting SaaS for social media agencies.',
-      zh: '作為 Social Space 的客製化解決方案打造。有潛力產品化為面向社群媒體代理商的報告 SaaS。',
-    },
-    marketingPlan: {
-      en: 'Internal tool for now. If productised, target social media agencies and marketing teams who spend too much time on manual reporting.',
-      zh: '目前為內部工具。若產品化，鎖定花費太多時間在手動報告上的社群媒體代理商和行銷團隊。',
-    },
-    whatILearned: {
-      en: 'Automation is most valuable when it removes a specific pain the client feels every week. Find the repetitive task, automate it completely, and the ROI is immediately obvious.',
-      zh: '當自動化消除客戶每週都能感受到的特定痛點時，其價值最高。找到重複性工作，完全自動化它，ROI 立刻顯而易見。',
-    },
-  },
-  {
     slug: 'muse-digital-print',
     type: 'B2C',
     image: '/photos/museprintsdigital-v2.png',
@@ -152,6 +153,40 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'social-space-reporting',
+    type: 'B2B',
+    image: null,
+    name: 'Auto Reporting System for Social Space',
+    category: 'AI Agent',
+    status: 'Live',
+    badge: 'e27 AI Workflow Challenge — Top 5',
+    shortDescription: {
+      en: 'An automated reporting system built for Social Space — turning raw social media data into clean, client-ready reports without the manual work.',
+      zh: '為 Social Space 打造的自動化報告系統——將原始社群媒體數據轉化為整潔的客戶報告，無需手動處理。',
+    },
+    longDescription: {
+      en: 'Social Space needed a faster way to deliver performance reports to their clients without spending hours manually pulling data and formatting slides. This automated reporting system connects to their data sources, processes the metrics, and generates polished, branded reports on a schedule. What used to take hours now happens automatically — freeing the team to focus on strategy, not spreadsheets.',
+      zh: 'Social Space 需要一種更快的方式向客戶交付績效報告，而不必花費數小時手動提取數據和格式化幻燈片。這個自動化報告系統連接到他們的數據來源，處理指標，並按計劃生成精美的品牌報告。過去需要數小時的工作現在自動完成——讓團隊專注於策略，而不是試算表。',
+    },
+    projectUrl: 'https://thesocialspace.netlify.app',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Claude API', 'n8n', 'Netlify', 'Make'],
+    monetization: {
+      en: 'Built as a custom solution for Social Space. Potential to productise into a reporting SaaS for social media agencies.',
+      zh: '作為 Social Space 的客製化解決方案打造。有潛力產品化為面向社群媒體代理商的報告 SaaS。',
+    },
+    marketingPlan: {
+      en: 'Internal tool for now. If productised, target social media agencies and marketing teams who spend too much time on manual reporting.',
+      zh: '目前為內部工具。若產品化，鎖定花費太多時間在手動報告上的社群媒體代理商和行銷團隊。',
+    },
+    whatILearned: {
+      en: 'Automation is most valuable when it removes a specific pain the client feels every week. Find the repetitive task, automate it completely, and the ROI is immediately obvious.',
+      zh: '當自動化消除客戶每週都能感受到的特定痛點時，其價值最高。找到重複性工作，完全自動化它，ROI 立刻顯而易見。',
+    },
+  },
+  {
     slug: 'cs-engine',
     type: 'B2B',
     image: '/photos/csengine-v2.png',
@@ -159,6 +194,7 @@ export const projects: Project[] = [
     category: 'AI Agent',
     status: 'Live',
     currentlyBuilding: true,
+    badge: 'e27 AI Workflow Challenge — Top 5',
     shortDescription: {
       en: 'An AI-powered Customer Intelligence Engine built for an ecommerce brand to automate CS workflows and turn support data into growth insights.',
       zh: '為電商品牌打造的 AI 客服智能引擎，自動化客服流程並將支援數據轉化為成長洞察。',

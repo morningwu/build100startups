@@ -99,9 +99,16 @@ export default function Home() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="font-semibold text-gray-900 text-lg leading-snug mb-1">
-                        {project.name}
-                      </h3>
+                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                        <h3 className="font-semibold text-gray-900 text-lg leading-snug">
+                          {project.name}
+                        </h3>
+                        {project.badge && (
+                          <span className="inline-flex items-center gap-1 text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded-full whitespace-nowrap">
+                            🏆 {project.badge}
+                          </span>
+                        )}
+                      </div>
                       <p className="text-gray-500 text-sm leading-relaxed">
                         {tr(project.shortDescription, lang)}
                       </p>
