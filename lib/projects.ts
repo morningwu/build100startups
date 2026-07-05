@@ -20,6 +20,39 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'afterwork-startup',
+    type: 'B2C',
+    image: null,
+    name: 'AfterWork Startup',
+    category: 'Learning Platform',
+    status: 'Live',
+    shortDescription: {
+      en: 'A step-by-step learning platform teaching professionals how to build and launch a startup after work hours — using AI tools to move fast without quitting your job.',
+      zh: '一個手把手的學習平台，教導上班族如何在下班時間用 AI 工具快速打造並上線創業產品——不需要辭掉工作。',
+    },
+    longDescription: {
+      en: 'AfterWork Startup is a learning platform built for professionals who want to build a startup without quitting their day job. It delivers structured, project-based lessons that teach you how to validate ideas, build with AI tools, and ship real products in your spare time. Every module is designed to fit into an after-work schedule — no fluff, no theory, just hands-on building.',
+      zh: 'AfterWork Startup 是一個為希望在不辭職的情況下創業的上班族打造的學習平台。它提供結構化、專案導向的課程，教你如何驗證想法、使用 AI 工具進行建造，並在業餘時間發布真實產品。每個模組都設計成適合下班後的時間表——沒有廢話，沒有純理論，只有動手實作。',
+    },
+    projectUrl: 'https://app.afterworkstartup.com/',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Next.js', 'Supabase', 'Stripe', 'Resend', 'Vercel'],
+    monetization: {
+      en: 'Course subscription model — monthly and annual plans giving access to all modules and future content.',
+      zh: '課程訂閱模式——月付和年付方案，提供所有模組和未來內容的存取權限。',
+    },
+    marketingPlan: {
+      en: 'Target working professionals on LinkedIn and X who want to build a side project but don\'t know where to start. "I built this after work" content series drives organic growth.',
+      zh: '鎖定 LinkedIn 和 X 上想建立副業但不知從何開始的上班族。「我在下班後建造了這個」內容系列帶動自然增長。',
+    },
+    whatILearned: {
+      en: 'The biggest barrier for aspiring founders isn\'t skill — it\'s time and structure. Give people a clear path that fits around their existing life and the activation rate jumps dramatically.',
+      zh: '有抱負的創業者最大的障礙不是技能——而是時間和結構。給人們一條清晰的、能融入現有生活的路徑，激活率會大幅提升。',
+    },
+  },
+  {
     slug: 'buildwithvibecode',
     type: 'B2C',
     image: '/photos/buildwithvibecode.png',

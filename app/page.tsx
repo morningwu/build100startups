@@ -20,7 +20,12 @@ function getFaviconUrl(projectUrl: string): string | null {
 
 export default function Home() {
   const { lang } = useLang()
-  const filtered: Project[] = projects.filter((p) => p.status === 'Live')
+  const TOP_ORDER = ['afterwork-startup', 'agent-squad', 'scammer-scanner']
+  const liveProjects = projects.filter((p) => p.status === 'Live')
+  const filtered: Project[] = [
+    ...TOP_ORDER.map((slug) => liveProjects.find((p) => p.slug === slug)).filter(Boolean) as Project[],
+    ...liveProjects.filter((p) => !TOP_ORDER.includes(p.slug)),
+  ]
 
   return (
     <main className="min-h-screen bg-white text-gray-900">

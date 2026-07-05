@@ -10,13 +10,19 @@ export default function Nav() {
     <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="/" className="font-bold text-gray-900 text-lg tracking-tight">
-          Build 100 Startups
+          Morning's Building Hub
         </a>
         <div className="flex items-center gap-6">
           <nav className="flex gap-6 text-sm text-gray-500">
             <a href="#projects" className="hover:text-gray-900 transition-colors">{tr(t.nav.projects, lang)}</a>
           </nav>
           <div className="flex items-center gap-3">
+            <a href="mailto:morningmaker1@gmail.com"
+              className="text-gray-400 hover:text-gray-900 transition-colors">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
             <a href="https://x.com/morningwuu" target="_blank" rel="noopener noreferrer"
               className="text-gray-400 hover:text-gray-900 transition-colors">
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
