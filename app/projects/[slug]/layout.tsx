@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getProjectBySlug } from '@/lib/projects'
 
-const SITE_URL = 'https://build100startups-7ca2.vercel.app'
+const SITE_URL = 'https://morningbuild.vercel.app'
 
 export async function generateMetadata({
   params,
