@@ -151,12 +151,8 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="border-t border-gray-100 px-4 md:px-6 py-6">
-        <div className="max-w-3xl mx-auto flex items-center justify-between text-sm text-gray-400">
-          <span>{tr(t.footer.text, lang)}</span>
-          <div className="flex gap-4">
-            <a href={withUTM('https://x.com/morningwuu')} target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">X</a>
-            <a href={withUTM('https://www.linkedin.com/in/morningwu/')} target="_blank" rel="noopener noreferrer" className="hover:text-gray-600 transition-colors">LinkedIn</a>
-          </div>
+        <div className="max-w-3xl mx-auto text-sm text-gray-400">
+          <span>Built by Morning Wu</span>
         </div>
       </footer>
     </main>
