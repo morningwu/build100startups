@@ -53,6 +53,39 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: 'social-space-reporting',
+    type: 'B2B',
+    image: null,
+    name: 'Auto Reporting System for Social Space',
+    category: 'AI Agent',
+    status: 'Live',
+    shortDescription: {
+      en: 'An automated reporting system built for Social Space — turning raw social media data into clean, client-ready reports without the manual work.',
+      zh: '為 Social Space 打造的自動化報告系統——將原始社群媒體數據轉化為整潔的客戶報告，無需手動處理。',
+    },
+    longDescription: {
+      en: 'Social Space needed a faster way to deliver performance reports to their clients without spending hours manually pulling data and formatting slides. This automated reporting system connects to their data sources, processes the metrics, and generates polished, branded reports on a schedule. What used to take hours now happens automatically — freeing the team to focus on strategy, not spreadsheets.',
+      zh: 'Social Space 需要一種更快的方式向客戶交付績效報告，而不必花費數小時手動提取數據和格式化幻燈片。這個自動化報告系統連接到他們的數據來源，處理指標，並按計劃生成精美的品牌報告。過去需要數小時的工作現在自動完成——讓團隊專注於策略，而不是試算表。',
+    },
+    projectUrl: 'https://thesocialspace.netlify.app',
+    mrr: 0,
+    monthlyVisitors: 0,
+    totalRevenue: 0,
+    tools: ['Claude API', 'n8n', 'Netlify', 'Make'],
+    monetization: {
+      en: 'Built as a custom solution for Social Space. Potential to productise into a reporting SaaS for social media agencies.',
+      zh: '作為 Social Space 的客製化解決方案打造。有潛力產品化為面向社群媒體代理商的報告 SaaS。',
+    },
+    marketingPlan: {
+      en: 'Internal tool for now. If productised, target social media agencies and marketing teams who spend too much time on manual reporting.',
+      zh: '目前為內部工具。若產品化，鎖定花費太多時間在手動報告上的社群媒體代理商和行銷團隊。',
+    },
+    whatILearned: {
+      en: 'Automation is most valuable when it removes a specific pain the client feels every week. Find the repetitive task, automate it completely, and the ROI is immediately obvious.',
+      zh: '當自動化消除客戶每週都能感受到的特定痛點時，其價值最高。找到重複性工作，完全自動化它，ROI 立刻顯而易見。',
+    },
+  },
+  {
     slug: 'muse-digital-print',
     type: 'B2C',
     image: '/photos/museprintsdigital-v2.png',
@@ -391,7 +424,8 @@ export const projects: Project[] = [
     image: null,
     name: 'ScammerScanner',
     category: 'AI Tool',
-    status: 'Idea',
+    status: 'Live',
+    projectUrl: 'https://scamscannerapp.vercel.app',
     shortDescription: {
       en: 'Paste a project, job offer, or investment opportunity and instantly find out if it\'s a scam.',
       zh: '貼上一個專案、工作機會或投資項目，立即判斷它是否是詐騙。',
@@ -400,7 +434,6 @@ export const projects: Project[] = [
       en: 'ScammerScanner is an AI-powered tool that analyses any opportunity — job postings, investment pitches, crypto projects, freelance gigs — and gives you a scam probability score with a breakdown of the red flags it detected. In a world where scams are getting more sophisticated and harder to spot, ScammerScanner acts as your always-on due diligence partner. Paste the text, share the link, or describe the opportunity, and get a verdict in seconds.',
       zh: 'ScammerScanner 是一個由 AI 驅動的工具，能分析任何機會——職位招聘、投資推介、加密貨幣專案、自由接案——並給出詐騙概率評分，附帶偵測到的警示說明。在詐騙手法日益複雜且難以識別的世界中，ScammerScanner 成為你永遠在線的盡職調查夥伴。貼上文字、分享連結或描述機會，幾秒內即可獲得判斷結果。',
     },
-    projectUrl: '#',
     mrr: 0,
     monthlyVisitors: 0,
     totalRevenue: 0,
